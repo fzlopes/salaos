@@ -1,4 +1,4 @@
-bi@extends('layouts.admin')
+@extends('layouts.admin')
 
 @section('css')
     <link href="{{ asset('vendor/pages/css/profile.css') }}" rel="stylesheet" type="text/css" />
