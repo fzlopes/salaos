@@ -24,16 +24,6 @@ class RolesTableSeeder extends Seeder
             'role' => 'ADMIN'
         ]);
 
-        Role::create([
-            'name' => 'Gerente',
-            'role' => 'MANAGER'
-        ]);
-
-        Role::create([
-            'name' => 'Colaborador',
-            'role' => 'COLLABORATOR'
-        ]);
-
         $this->command->info('The basic roles was created.');
     }
 }
