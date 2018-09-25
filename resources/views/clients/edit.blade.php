@@ -16,7 +16,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="{{ route('cliente.index') }}">Clientes</a>
+                <a href="{{ route('clientes.index') }}">Clientes</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -45,7 +45,7 @@
 
     @include('layouts.partials.errors')
 
-    @include('clients.clients.partials.form')
+    @include('clients.partials.form')
 
 @endsection
 

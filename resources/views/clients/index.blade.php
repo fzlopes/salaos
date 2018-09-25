@@ -63,7 +63,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right">
-                                    <a href="{{ route('cliente.create') }}">
+                                    <a href="{{ route('clientes.create') }}">
                                         <button id="sample_editable_1_new" class="btn sbold green"> Criar cliente
                                             <i class="fa fa-plus"></i>
                                         </button>
