@@ -41,111 +41,13 @@
                 </a>
             </li>
 
-            <li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'testes' || Request::is('testes/create') ? ' start active open' : '' }}">
-                <a href="{{ route('testes.index') }}" class="nav-link ">
+            <li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'clientes' || Request::is('clientes/create') ? ' start active open' : '' }}">
+                <a href="{{ route('clientes.index') }}" class="nav-link ">
                     <i class="icon-rocket"></i>
-                    <span class="title">Teste</span>
+                    <span class="title">Clientes</span>
                 </a>
             </li>
-
-            {{--<li class="heading">--}}
-                {{--<h3 class="uppercase">Configurações</h3>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'usuarios' || strstr(Route::getCurrentRoute()->getName(), '.', true) == 'grupos' ? ' start active open' : '' }}">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                    {{--<i class="icon-lock"></i>--}}
-                    {{--<span class="title">Permissões</span>--}}
-                    {{--@if (strstr(Route::getCurrentRoute()->getName(), '.', true) == 'usuarios')--}}
-                        {{--<span class="selected"></span>--}}
-                        {{--<span class="arrow open"></span>--}}
-                    {{--@else--}}
-                        {{--<span class="arrow"></span>--}}
-                    {{--@endif--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                    {{--<li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'usuarios' ? ' start active open' : '' }}">--}}
-                        {{--<a href="{{ route('usuarios.index') }}" class="nav-link ">--}}
-                            {{--<i class="icon-users"></i>--}}
-                            {{--<span class="title">Usuários</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'grupos' ? ' start active open' : '' }}">--}}
-                        {{--<a href="{{ route('grupos.index') }}" class="nav-link ">--}}
-                            {{--<i class="icon-puzzle"></i>--}}
-                            {{--<span class="title">Grupos</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-
-
-            {{--<li class="heading">--}}
-                {{--<h3 class="uppercase">Financeiro</h3>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item  ">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                    {{--<i class="icon-layers"></i>--}}
-                    {{--<span class="title">Cadastros</span>--}}
-                    {{--<span class="arrow"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_date_time_pickers.html" class="nav-link ">--}}
-                            {{--<span class="title">Usuários</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_color_pickers.html" class="nav-link ">--}}
-                            {{--<span class="title">Grupos</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item  ">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                    {{--<i class="icon-graph"></i>--}}
-                    {{--<span class="title">Contas a receber</span>--}}
-                    {{--<span class="arrow"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_date_time_pickers.html" class="nav-link ">--}}
-                            {{--<span class="title">Usuários</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_color_pickers.html" class="nav-link ">--}}
-                            {{--<span class="title">Grupos</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-
-            {{--<li class="heading">--}}
-                {{--<h3 class="uppercase">Relatórios</h3>--}}
-            {{--</li>--}}
-            {{--<li class="nav-item  ">--}}
-                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
-                    {{--<i class="icon-bar-chart"></i>--}}
-                    {{--<span class="title">Financeiros</span>--}}
-                    {{--<span class="arrow"></span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu">--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_date_time_pickers.html" class="nav-link ">--}}
-                            {{--<i class="icon-users"></i>--}}
-                            {{--<span class="title">Usuários</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                    {{--<li class="nav-item  ">--}}
-                        {{--<a href="components_color_pickers.html" class="nav-link ">--}}
-                            {{--<i class="icon-puzzle"></i>--}}
-                            {{--<span class="title">Grupos</span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-
+ 
         </ul>
     </div>
 </div>
