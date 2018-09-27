@@ -20,7 +20,7 @@
                                 <span class="caption-subject font-blue-madison bold uppercase">Dados básicos</span>
                             </div>
                             <div class="btn-group pull-right">
-                                <a href="{{ route('cliente.index') }}" class="btn sbold default"> Voltar <i class="fa fa-rotate-left"></i></a>
+                                <a href="{{ route('clientes.index') }}" class="btn sbold default"> Voltar <i class="fa fa-rotate-left"></i></a>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                                 <div class="form-group {{ $errors->has('whats') ? 'has-error' :'' }} whats">
                                                 {!! Form::label('whats', 'Whats', ['class' => 'control-label']) !!}
                                                 <br>
-                                                @if(!empty($specialist) && ($specialist->whats == 1))
+                                                @if(!empty($client) && ($client->whats == 1))
                                                     {!! Form::checkbox('whats', 1 ,true ,  ['class' => '','tabindex' => 5]) !!}
                                                 @else
                                                     {!! Form::checkbox('whats', 1 ,false , ['class' => '','tabindex' => 5]) !!}

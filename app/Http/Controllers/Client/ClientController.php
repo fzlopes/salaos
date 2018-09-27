@@ -26,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $input['phone']    = preg_replace('/\D/', '', $request->get('phone'));
+        $input['celphone'] = preg_replace('/\D/', '', $request->get('celphone'));
+        
+        $request->replace($input);
+
+        Client::create($request->all());
+
+        return redirect()
+            ->route('clientes.index')
+            ->with(['success' => 'Cliente cadastrado com sucesso!']);
     }
 
     /**
@@ -48,7 +59,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('clients.edit');
     }
 
     /**
@@ -59,7 +70,9 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        return view('clients.edit')->with(compact('client'));
     }
 
     /**
@@ -71,7 +84,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $input['phone']    = preg_replace('/\D/', '', $request->get('phone'));
+        $input['celphone'] = preg_replace('/\D/', '', $request->get('celphone'));
+
+        $request->replace($input);
+
+        $client = Client::find($id);
+        $client->whats = $request->get('whats') == null ? 0 : 1;
+        $client->fill($request->all());
+        $client->save();
+
+        return redirect()
+            ->route('clientes.index')
+            ->with(['success' => 'Cliente alterado com sucesso!']);
     }
 
     /**
