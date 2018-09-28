@@ -59,7 +59,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return view('clients.edit');
+        $client = Client::findOrFail($id);
+        return view('clients.show')->with(compact('client'));
     }
 
     /**
@@ -109,6 +110,12 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clientt = Client::find($id);
+
+        $client->delete();
+
+        \Session::flash('success', 'Cliente ' . $client->name . ' apagado com sucesso.');
+
+        return response()->json(['message' => 'Cliente ' . $client->name . ' apagado com sucesso.']);
     }
 }
