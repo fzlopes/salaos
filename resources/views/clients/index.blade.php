@@ -91,10 +91,26 @@
                             <tr class="odd gradeX">
                                 <td> {{$client->id}} </td>
                                 <td> {{$client->name}} </td>
-                                <td> {{$client->address}} </td>
-                                <td> {{$client->phone}} </td>
-                                <td> {{$client->celphone}} </td>
-                                <td> {{$client->whats}} </td>
+                                @if($client->address)
+                                    <td> {{$client->address}} </td>
+                                @else
+                                    <td> </td>
+                                @endif
+                                @if($client->phone)
+                                    <td> {{$client->phone}} </td>
+                                @else
+                                    <td> </td>
+                                @endif
+                                @if($client->celhpone)
+                                    <td> {{$client->celphone}} </td>
+                                @else
+                                    <td> </td>
+                                @endif
+                                @if($client->whats)
+                                    <td> {{$client->whats}} </td>
+                                @else
+                                    <td> </td>
+                                @endif
                                 <td>
                                     <div class="clearfix">
                                         <a href="{{ route('clientes.show', $client->id) }}"><button class="btn grey-cascade btn-outline btn-xs mt-sweetalert" type="button"> ver </button></a>
