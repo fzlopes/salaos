@@ -38,6 +38,18 @@ class ServicesTableSeeder extends Seeder
             'name' => 'Corte Masculino Tesoura'
         ]);
 
+        Service::create([
+            'name' => 'Pé'
+        ]);
+
+        Service::create([
+            'name' => 'Mão'
+        ]);
+
+        Service::create([
+            'name' => 'Mão e Pé'
+        ]);
+
         $this->command->info('The basic service was created.');
     }
 }
