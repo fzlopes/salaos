@@ -80,7 +80,6 @@
                                 <th> Endereço </th>
                                 <th> Telefone </th>
                                 <th> Celular  </th>
-                                <th> Whats    </th>
                                 <th> Actions  </th>
                             </tr>
                         </thead>
@@ -101,13 +100,8 @@
                                 @else
                                     <td> </td>
                                 @endif
-                                @if($client->celhpone)
+                                @if($client->celphone)
                                     <td> {{$client->celphone}} </td>
-                                @else
-                                    <td> </td>
-                                @endif
-                                @if($client->whats)
-                                    <td> {{$client->whats}} </td>
                                 @else
                                     <td> </td>
                                 @endif

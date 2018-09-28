@@ -85,8 +85,9 @@
                                         <div class="col-md-9">
                                             @if ($client->address)
                                                 <p class="form-control-static"> {{ $client->address }} </p>    
-                                            @endif
+                                            @else
                                                 <p class="form-control-static">  </p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -94,9 +95,9 @@
                             </div>
 
                             <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label col-md-6">Telefone:</label>
+                                            <label class="control-label col-md-3">Telefone:</label>
                                             @if($client->phone)
                                                 <div class="col-md-6">
                                                     @if(Agent::isMobile())
@@ -108,9 +109,9 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-6">Celular:</label>
+                                                <label class="control-label col-md-3">Celular:</label>
                                                 @if($client->celphone)
                                                     <div class="col-md-6">
                                                         @if(Agent::isMobile())
@@ -123,63 +124,42 @@
                                             </div>
                                     </div>
                             </div>        
-
-                            <div class="col-md-3">
-                                    <div class="form-group">
-                                        <div class="col-md-6">
-                                            @if(Agent::isMobile())
-                                                @if($client->whats)
-                                                    <label class="control-label col-md-6"><a href="https://wa.me/55{{$client->celphone}}"><img src="<?php echo e(asset('img/logo/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></a></label>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Whats:</label>
+                                            <div class="col-md-6">
+                                                @if(Agent::isMobile())
+                                                    @if($client->whats)
+                                                        <p class="form-control-static"><a href="https://wa.me/55{{$client->celphone}}"><img src="<?php echo e(asset('img/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></a></p>
+                                                    @else
+                                                        <p class="form-control-static"> </p>
+                                                    @endif
                                                 @else
-                                                    <label class="control-label col-md-6"> </label>
+                                                    @if($client->whats)
+                                                        <p class="form-control-static"><img src="<?php echo e(asset('img/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></p>
+                                                    @else
+                                                        <p class="form-control-static"> </p>
+                                                    @endif
                                                 @endif
-                                            @else
-                                                @if($client->whats)
-                                                    <label class="control-label col-md-6"><img src="<?php echo e(asset('img/logo/whats.png')); ?>" alt="Whatsapp" height="32" width="32" /></label>
-                                                @else
-                                                    <label class="control-label col-md-6"> </label>
-                                                @endif
-                                            @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                </div>
                             </div>
                                     
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Cadastrado em:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @if($client->created_at){{$client->created_at->format('d/m/Y H:i:s')}}@endif </p>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <a href="{{ route('clientes.edit', $client->id) }}" class="btn green"> <i class="fa fa-pencil"></i> Editar </a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6"> </div>
                                 </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Última alteração:</label>
-                                        <div class="col-md-9">
-                                            <p class="form-control-static"> @if($client->updated_at){{$client->updated_at->format('d/m/Y H:i:s')}}@endif </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
                             </div>
-                            <!--/row-->
-
-                        </div>
-
-                        <div class="form-actions">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-offset-3 col-md-9">
-                                            <a href="{{ route('clientes.edit', $client->id) }}" class="btn green"> <i class="fa fa-pencil"></i> Editar </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6"> </div>
-                            </div>
-                        </div>
 
                     </form>
                     <!-- END FORM-->
