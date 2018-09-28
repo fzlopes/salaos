@@ -80,6 +80,7 @@
                                 <th> Endereço </th>
                                 <th> Telefone </th>
                                 <th> Celular  </th>
+                                <th> Whats    </th>
                                 <th> Actions  </th>
                             </tr>
                         </thead>
@@ -93,6 +94,7 @@
                                 <td> {{$client->address}} </td>
                                 <td> {{$client->phone}} </td>
                                 <td> {{$client->celphone}} </td>
+                                <td> {{$client->whats}} </td>
                                 <td>
                                     <div class="clearfix">
                                         <a href="{{ route('clientes.show', $client->id) }}"><button class="btn grey-cascade btn-outline btn-xs mt-sweetalert" type="button"> ver </button></a>
@@ -122,7 +124,7 @@
 
                 $.ajax({
                     type:"DELETE",
-                    url:'<?= env("APP_URL") ?>/cliente/'+sa_id,
+                    url:'clientes/'+sa_id,
                     data:$('#formBlockAndDelete').serialize(),
                     dataType: 'json',
                     success: function(data){
