@@ -37,10 +37,17 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Permission', 'as' => 'user
 });
 
 /**
- * Test routes
+ * Client routes
  */
 Route::group(['middleware' => 'auth', 'namespace' => 'Client'], function() {
     Route::resource('clientes', 'ClientController');
+});
+
+/**
+ * Schedule routes
+ */
+Route::group(['middleware' => 'auth', 'namespace' => 'Schedule'], function() {
+    Route::resource('agendas', 'ScheduleController');
 });
 
 

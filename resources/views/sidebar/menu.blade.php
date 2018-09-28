@@ -47,6 +47,13 @@
                     <span class="title">Clientes</span>
                 </a>
             </li>
+
+            <li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'agendas' || Request::is('agendas/create') ? ' start active open' : '' }}">
+                <a href="{{ route('agendas.index') }}" class="nav-link ">
+                    <i class="icon-rocket"></i>
+                    <span class="title">Agenda</span>
+                </a>
+            </li>
  
         </ul>
     </div>
