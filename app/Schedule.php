@@ -12,6 +12,13 @@ class Schedule extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'name', 'address', 'phone', 'celphone', 'whats'
+        'client', 'date', 'hour', 'observation', 'value', 'service_id'
     ];
+
+    public function service()
+    {
+        return $this->belongsTo('App\Service');
+    }
 }
+
+

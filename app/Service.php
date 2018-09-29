@@ -14,4 +14,9 @@ class Service extends Model
     protected $fillable = [
         'name'
     ];
+    
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule');
+    }
 }
