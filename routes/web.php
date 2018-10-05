@@ -46,9 +46,16 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Client'], function() {
 /**
  * Schedule routes
  */
+Route::group(['middleware' => 'auth', 'namespace' => 'Schedule', 'as' => 'agendas.'], function() {
+    Route::get('agendas/search/{date}', 'ScheduleController@search')->name('search');
+    Route::get('agendas/busca', 'ScheduleController@busca')->name('busca');
+    Route::post('agendas/buscar', 'ScheduleController@buscar')->name('buscar');
+});
+
 Route::group(['middleware' => 'auth', 'namespace' => 'Schedule'], function() {
     Route::resource('agendas', 'ScheduleController');
 });
+
 
 
 
