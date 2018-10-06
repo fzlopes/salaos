@@ -2,6 +2,7 @@
 
 @section('css')
     <link href="{{ asset('vendor/global/plugins/bootstrap-sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/global/css/schedule.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('pagebar')
