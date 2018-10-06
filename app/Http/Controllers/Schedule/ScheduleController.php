@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Schedule;
 use Illuminate\Support\Carbon;
 use App\Service;
+use App\Client;
 
 class ScheduleController extends Controller
 {
@@ -21,11 +22,19 @@ class ScheduleController extends Controller
                    ->orderBy('hour', 'asc')
                    ->get();
 
-        $dataHoje = Carbon::now()->format('d/m/Y');
+        $dataHoje = Carbon::now()->format('d/m/Y');          
 
-        $services = Service::orderBy('id', 'asc')->get();
+        $clients = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
         
-        return view('schedules.index')->with(compact('schedules','dataHoje','services'));
+        $services = Service::select('id','name')
+        ->orderBy('id', 'asc')
+        ->get()
+        ->pluck('name','id');
+        
+        return view('schedules.index')->with(compact('schedules','dataHoje','clients','services'));
     }
 
     /**
