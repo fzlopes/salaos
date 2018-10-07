@@ -56,31 +56,77 @@
             <div class="portlet light bordered">
 
                 <div class="portlet-body">
-
                     <div class="table-toolbar">
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-left">
-                                    <a href="{{ route('agendas.create') }}">
-                                        <button class="btn sbold btn-primary">Nova Agenda</button>
+                                    <a href="javascript:;">
+                                        <button class="btn sbold btn-primary" data-toggle="modal" data-target="#modal-novaagenda">Nova Agenda</button>
                                     </a>
                                     <a href="javascript:;">
-                                        <button class="btn sbold btn-primary">Busca Agenda</button>
+                                        <button class="btn sbold btn-primary" data-toggle="modal" data-target="#modal-buscaagenda">Busca Agenda</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="modal fade" id="modal-buscaagenda" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title bold">Busca Agenda</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="portlet-body form">
 
+                                            {!! Form::open(['url' => route('agendas.buscar'), 'class' =>'', 'id' =>'submit_form', 'method' => 'post']) !!}
+                                            <div class="form-wizard">
+                                                <div class="form-body">
+                                                    <div class="tab-content">
+                                                        <div class="alert alert-danger display-none">
+                                                            <button class="close" data-dismiss="alert"></button> Você precisa preencher os campos abaixo. </div>
+                                                        <div class="alert alert-success display-none">
+                                                            <button class="close" data-dismiss="alert"></button> Validação correta </div>
+                                                        <div class="tab-pane active" id="tab1">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class=" form-group {{ $errors->has('date') ? 'has-error' :'' }}">
+                                                                            {!! Form::label('date', 'Data*', ['class' => 'control-label']) !!}
+                                                                            <br>
+                                                                            {!! Form::date('date', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Data']) !!}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="margiv-top-10">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                            {!! Form::submit('Buscar', ['class' => 'btn green']) !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-7 datahoje">
                                 <div class="col-md-5">
                                     <a href="javascript:;" class="anterior" data-filter="prev">
-                                        <i class="glyphicon glyphicon-backward prev-schedule"></i>
+                                        <i class="glyphicon glyphicon-backward prev-diary"></i>
                                     </a>
                                     <h3 class="sbold schedule-date">{{$dataHoje}}</h3>
                                     <a href="javascript:;" class="proximo" data-filter="next">
-                                        <i class="glyphicon glyphicon-forward next-schedule"></i>
+                                        <i class="glyphicon glyphicon-forward next-diary"></i>
                                     </a>
                                 </div>
                             </div>
@@ -147,6 +193,97 @@
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
+
+    <div class="modal fade" id="modal-novaagenda" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title bold">Nova Agenda</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if(!empty($schedule))
+                        {!! Form::model($schedule, ['url' => route('agendas.update', $schedule->id), 'class' =>'', 'id' =>'submit_form','method' => 'put']) !!}
+                        {!! Form::hidden('id', $schedule->id) !!}
+                    @else
+                        {!! Form::open(['url' => route('agendas.store'), 'class' =>'', 'id' =>'submit_form', 'method' => 'post']) !!}
+                    @endif
+
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <div class="tab-content">
+                                <div class="alert alert-danger display-none">
+                                    <button class="close" data-dismiss="alert"></button> Você precisa preencher os campos abaixo. </div>
+                                <div class="alert alert-success display-none">
+                                    <button class="close" data-dismiss="alert"></button> Validação correta </div>
+                                <div class="tab-pane active" id="tab1">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class=" form-group {{ $errors->has('hour') ? 'has-error' :'' }}">
+                                                    {!! Form::label('hour', 'Hora *', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::time('hour', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Hora']) !!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class=" form-group {{ $errors->has('date') ? 'has-error' :'' }}">
+                                                    {!! Form::label('date', 'Data *', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::date('date', null , ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Data']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
+                                                    {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::select('client_id', $clients, !empty($schedule->client)?$schedule->client->id:null,  ['class' => 'form-control','required' => 'required', 'placeholder' => 'Selecione o cliente...']) !!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group {{ $errors->has('service_id') ? 'has-error' :'' }}">
+                                                    {!! Form::label('service_id', 'Serviço *', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::select('service_id', $services, !empty($schedule->service)?$schedule->service->id:null,  ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Selecione o serviço...']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class=" form-group {{ $errors->has('observation') ? 'has-error' :'' }}">
+                                                    {!! Form::label('observation', 'Observação', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::text('observation', null, ['class' => 'form-control', 'placeholder' => 'Observação']) !!}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
+                                                    {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
+                                                    <br>
+                                                    {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor pago']) !!}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="margiv-top-10">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    {!! Form::submit('Salvar', ['class' => 'btn green']) !!}
+                                </div>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
 
 @endsection
 
@@ -231,7 +368,7 @@
                                 classe='dark';
                             }
 
-                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['client_id']+
+                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['clientt']+
                                 '</td><td>';
 
                             str += '</td><td>';
@@ -285,34 +422,13 @@
                             if(valor['action_id'] == 2) {
                                 classe='success';
                             }
-                            if(valor['service_id'] == 3) {
-                                classe='primary';
-                            }
-                            if(valor['service_id'] == 4) {
-                                classe='secondary'
-                            }
-                            if(valor['service_id'] == 5) {
-                                classe='danger';
-                            }
-                            if(valor['service_id'] == 6) {
-                                classe='warning';
-                            }
-                            if(valor['service_id'] == 7) {
-                                classe='lighy';
-                            }
-                            if(valor['service_id'] == 8) {
-                                classe='muted';
-                            }
-                            if(valor['service_id'] == 9) {
-                                classe='dark';
-                            }
 
-                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['client_id']+
+                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['client']+
                                 '</td><td>';
 
                             str += '</td><td>';
 
-                            if( valor['service_id'] != null) {
+                            if( valor['service'] != null) {
                                 str += valor['service'];
                             }
 
@@ -358,4 +474,3 @@
         });
     </script>
 @endsection
-

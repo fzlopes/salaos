@@ -50,6 +50,6 @@ class ServicesTableSeeder extends Seeder
             'name' => 'Mão e Pé'
         ]);
 
-        $this->command->info('The basic service was created.');
+        $this->command->info('The basic services was created.');
     }
 }

@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         @if(!empty($client))
-            {!! Form::model($schedule, ['url' => route('agendas.update', $client->id), 'method' => 'put']) !!}
+            {!! Form::model($schedule, ['url' => route('agendas.update', $schedule->id), 'method' => 'put']) !!}
             {!! Form::hidden('id', $schedule->id) !!}
         @else
             {!! Form::open(['url' => route('agendas.store'), 'method' => 'post']) !!}
@@ -26,25 +26,20 @@
 
                         <div class="portlet-body form">
                             <div class="tab-content">
-                                <div class="form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
-                                    {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
-                                    {!! Form::text('client', null, ['class' => 'form-control', 'required' => 'required', 'tabindex' => 1]) !!}
-                                    {!! Form::hidden('client_id') !!}
-                                </div>
-
-                                <div class="form-group {{ $errors->has('date') ? 'has-error' :'' }}">
+                                <div class=" form-group {{ $errors->has('date') ? 'has-error' :'' }}">
                                     {!! Form::label('date', 'Data *', ['class' => 'control-label']) !!}
-                                    {!! Form::date('date', null, ['class' => 'form-control', 'tabindex' => 2]) !!}
+                                    {!! Form::date('date', null , ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Data']) !!}
                                 </div>
 
-                                <div class="form-group {{ $errors->has('hour') ? 'has-error' :'' }}">
+                                <div class=" form-group {{ $errors->has('hour') ? 'has-error' :'' }}">
                                     {!! Form::label('hour', 'Hora *', ['class' => 'control-label']) !!}
-                                    {!! Form::time('hour', null, ['class' => 'form-control', 'tabindex' => 3]) !!}
+                                    {!! Form::time('hour', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Hora']) !!}
                                 </div>
 
-                                <div class="form-group {{ $errors->has('observation') ? 'has-error' :'' }}">
-                                    {!! Form::label('observation', 'Observação', ['class' => 'control-label']) !!}
-                                    {!! Form::text('observation', null, ['class' => 'form-control', 'tabindex' => 4]) !!}
+                                <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
+                                    {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
+                                    <br>
+                                    {!! Form::select('client_id', $clients, !empty($schedule->client)?$schedule->client->id:null,  ['class' => 'form-control','required' => 'required', 'placeholder' => 'Selecione o cliente...']) !!}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('service_id') ? 'has-error' :'' }}">
@@ -52,7 +47,18 @@
                                     <br>
                                     {!! Form::select('service_id', $services, !empty($schedule->service)?$schedule->service->id:null,  ['class' => 'form-control','placeholder' => 'Selecione o serviço...', 'tabindex' => 5]) !!}
                                 </div>
-                            
+
+                                <div class="form-group {{ $errors->has('observation') ? 'has-error' :'' }}">
+                                    {!! Form::label('observation', 'Observação', ['class' => 'control-label']) !!}
+                                    {!! Form::text('observation', null, ['class' => 'form-control', 'tabindex' => 4]) !!}
+                                </div>
+
+                                <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
+                                    {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
+                                    <br>
+                                    {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor pago']) !!}
+                                </div>
+              
                             </div>
                         </div>
 

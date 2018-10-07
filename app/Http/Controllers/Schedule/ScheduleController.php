@@ -22,29 +22,29 @@ class ScheduleController extends Controller
                    ->orderBy('hour', 'asc')
                    ->get();
 
-        $dataHoje = Carbon::now()->format('d/m/Y');          
-
-        $clients = Client::select('id','name')
-            ->orderBy('name', 'asc')
-            ->get()
-            ->pluck('name','id');
+        $dataHoje = Carbon::now()->format('d/m/Y'); 
         
-        $services = Service::select('id','name')
-        ->orderBy('id', 'asc')
-        ->get()
-        ->pluck('name','id');
-        
-        return view('schedules.index')->with(compact('schedules','dataHoje','clients','services'));
+        return view('schedules.index')->with(compact('schedules','dataHoje'));
     }
 
-    /**
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('clients.create');
+        $clients = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+        
+        $services = Service::select('id','name')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name','id');
+
+        return view('schedules.create')->with(compact('clients','services'));
     }
 
     /**
@@ -55,32 +55,14 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-
-        $input['phone']    = preg_replace('/\D/', '', $request->get('phone'));
-        $input['celphone'] = preg_replace('/\D/', '', $request->get('celphone'));
-        
-        $request->replace($input);
-
-        Client::create($request->all());
+        Schedule::create($request->all());
 
         return redirect()
-            ->route('clientes.index')
-            ->with(['success' => 'Cliente cadastrado com sucesso!']);
+            ->route('agendas.index')
+            ->with(['success' => 'Agenda cadastrada com sucesso!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $client = Client::findOrFail($id);
-        return view('clients.show')->with(compact('client'));
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -89,9 +71,31 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::findOrFail($id);
+        $schedule = Schedule::findOrFail($id);
 
-        return view('clients.edit')->with(compact('client'));
+        $date = $schedule->date;
+        $dataHoje = Carbon::parse($date)->format('d/m/Y');
+        $schedules = null;
+
+        $clients = Client::select('id','name')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name','id');
+    
+        $services = Service::select('id','name')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name','id');
+
+        $schedules = Schedule::where('date', '=', $date)
+            ->orderBy('hour', 'asc')
+            ->get();
+
+        return view('schedules.edit')->with(compact('schedules',
+            'dataHoje',
+            'clients',
+            'services',
+            'schedule'));
     }
 
     /**
@@ -103,21 +107,43 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
+        $schedule = Schedule::find($id);
+        $schedule->fill($request->all());
+        $schedule->save();
 
-        $input['phone']    = preg_replace('/\D/', '', $request->get('phone'));
-        $input['celphone'] = preg_replace('/\D/', '', $request->get('celphone'));
+        $date = $schedule->date;
+        $dataHoje = Carbon::parse($date)->format('d/m/Y');
+        $schedules = null;
 
-        $request->replace($input);
+        $clients = Client::select('id','name')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name','id');
+    
+        $services = Service::select('id','name')
+        ->orderBy('name', 'asc')
+        ->get()
+        ->pluck('name','id');
 
-        $client = Client::find($id);
-        $client->whats = $request->get('whats') == null ? 0 : 1;
-        $client->fill($request->all());
-        $client->save();
+        $schedules = Schedule::where('date', '=', $date)
+            ->orderBy('hour', 'asc')
+            ->get();
 
         return redirect()
-            ->route('clientes.index')
-            ->with(['success' => 'Cliente alterado com sucesso!']);
+            ->route('agendas.index')
+            ->with(['success' => 'Agenda alterada com sucesso!']);
+       
+    }
+
+    public function search($date)
+    {
+        if(!empty($date)) {
+            $schedules = Schedule::where('date', '=', Carbon::parse($date)->format('Y-m-d'))->orderBy('hour', 'asc')->get();
+        } else {
+            $schedules = Schedule::where('date', '=', Carbon::now()->format('Y-m-d'))->orderBy('hour', 'asc')->get();
+        }
+
+        return ['schedules'=>$schedules];
     }
 
     /**
