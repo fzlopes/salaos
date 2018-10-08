@@ -73,9 +73,7 @@ class ScheduleController extends Controller
     {
         $schedule = Schedule::findOrFail($id);
 
-        $date = $schedule->date;
-        $dataHoje = Carbon::parse($date)->format('d/m/Y');
-        $schedules = null;
+        dd($schedule);
 
         $clients = Client::select('id','name')
         ->orderBy('name', 'asc')
@@ -87,15 +85,9 @@ class ScheduleController extends Controller
         ->get()
         ->pluck('name','id');
 
-        $schedules = Schedule::where('date', '=', $date)
-            ->orderBy('hour', 'asc')
-            ->get();
-
-        return view('schedules.edit')->with(compact('schedules',
-            'dataHoje',
+        return view('schedules.edit')->with(compact('schedule',
             'clients',
-            'services',
-            'schedule'));
+            'services'));
     }
 
     /**
