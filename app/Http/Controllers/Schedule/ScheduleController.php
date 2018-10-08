@@ -40,9 +40,9 @@ class ScheduleController extends Controller
             ->pluck('name','id');
         
         $services = Service::select('id','name')
-        ->orderBy('name', 'asc')
-        ->get()
-        ->pluck('name','id');
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
 
         return view('schedules.create')->with(compact('clients','services'));
     }
@@ -72,8 +72,6 @@ class ScheduleController extends Controller
     public function edit($id)
     {
         $schedule = Schedule::findOrFail($id);
-
-        dd($schedule);
 
         $clients = Client::select('id','name')
         ->orderBy('name', 'asc')
