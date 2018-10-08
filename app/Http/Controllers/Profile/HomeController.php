@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Client;
+use App\Schedule;
 
 class HomeController extends Controller
 {
@@ -29,7 +31,11 @@ class HomeController extends Controller
             ->get()
             ->count();
 
-        return view('profile.dashboard')->with(compact('usuarios'));
+        $clientes = Client::count('id');
+        
+        $valor = Schedule::sum('value');
+
+        return view('profile.dashboard')->with(compact('usuarios','clientes', 'valor'));
     }
 
     /**

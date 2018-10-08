@@ -61,7 +61,7 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span data-counter="counterup" data-value="0">0</span>
+                    <span data-counter="counterup" data-value="{{$clientes}}">0</span>
                     </div>
                     <div class="desc"> Clientes ativos</div>
                 </div>
@@ -74,8 +74,8 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span data-counter="counterup" data-value="89"></span>% </div>
-                    <div class="desc"> Recebido do total até o momento </div>
+                        <span data-counter="counterup" data-value="{{$valor}}"></span>0</div>
+                    <div class="desc"> Total R$ recebido  </div>
                 </div>
             </a>
         </div>
