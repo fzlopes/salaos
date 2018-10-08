@@ -89,51 +89,25 @@
                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                         <thead>
                         <tr>
-                            <th> Hora      </th>
-                            <th> Cliente   </th>
-                            <th> Serviço   </th>
-                            <th>           </th>
+                            <th> Hora       </th>
+                            <th> Cliente    </th>
+                            <th> Serviço    </th>
+                            <th> Valor      </th>
+                            <th>            </th>
                         </tr>
                         </thead>
                         <tbody class="mybody">
                         @if($schedules!=null)
                             @foreach ($schedules as $item)
-                                @if($item->service_id == 1)
-                                    <tr class="info">
-                                @endif
-                                @if($item->service_id == 2)
-                                    <tr class="success">
-                                @endif
-                                @if($item->service_id == 3)
-                                    <tr class="primary">
-                                @endif
-                                @if($item->service_id == 4)
-                                    <tr class="secondary">
-                                @endif
-                                @if($item->service_id == 5)
-                                    <tr class="danger">
-                                @endif
-                                @if($item->service_id == 6)
-                                    <tr class="warning">
-                                @endif
-                                @if($item->service_id == 7)
-                                    <tr class="light">
-                                @endif
-                                @if($item->service_id == 8)
-                                    <tr class="muted">
-                                @endif
-                                @if($item->service_id == 9)
-                                    <tr class="dark">
-                                @else
-                                    <tr class="odd gradeX">
-                                @endif
+                                  <tr class="odd gradeX">
                                         <td> {{$item->hour}} </td>
                                         <td> {{$item->client->name}} </td>
                                         <td> {{$item->service->name}} </td>
+                                        <td> {{$item->value}} </td>
                                         <td>
                                             <div class="clearfix">
                                                 <a href="{{ route('agendas.edit', $item->id) }}"><button class="btn grey" type="button"><i class="glyphicon glyphicon-pencil"></i></button></a>
-                                                <button class="btn red mt-sweetalert" type="button" data-button="del" data-id="{{ $item->id }}" data-title="Confirma exclusão da consulta do cliente {{ $item->client }}?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                                                <button class="btn red mt-sweetalert" type="button" data-button="del" data-id="{{ $item->id }}" data-title="Confirma exclusão da consulta do cliente {{ $item->client->name }}?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
                                             </div>
                                             {!! Form::open(['url' => '', 'method' => 'deleter', 'id' => 'formDelete']) !!} {!! Form::close() !!}
                                         </td>
@@ -200,47 +174,28 @@
                     dataType: 'json',
                     success: function(data){
                         var str = '';
-                        var classe = '';
                         data['schedules'].forEach(function(valor, chave){
 
-                            if(valor['service_id'] == 1) {
-                                classe='info';
-                            }
-                            if(valor['service_id'] == 2) {
-                                classe='success';
-                            }
-                            if(valor['service_id'] == 3) {
-                                classe='primary';
-                            }
-                            if(valor['service_id'] == 4) {
-                                classe='secondary'
-                            }
-                            if(valor['service_id'] == 5) {
-                                classe='danger';
-                            }
-                            if(valor['service_id'] == 6) {
-                                classe='warning';
-                            }
-                            if(valor['service_id'] == 7) {
-                                classe='lighy';
-                            }
-                            if(valor['service_id'] == 8) {
-                                classe='muted';
-                            }
-                            if(valor['service_id'] == 9) {
-                                classe='dark';
-                            }
+                           str += '<tr><td>'+valor['hour']+'</td><td>';
 
-                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['client_id']+
-                                '</td><td>';
+                            if( valor['client_id'] != null) {
+                                str += data['clients'][valor['client_id']];
+                            }
 
                             str += '</td><td>';
 
-                            if( valor['service'] != null) {
-                                str += valor['service'];
+                             if( valor['service_id'] != null) {
+                                str += data['services'][valor['service_id']];
+                            }
+
+                            str += '</td><td>';
+
+                            if( valor['value'] != null) {
+                                str += valor['value'];
                             }
 
                             str += '</td><td>'
+
 
                             str += '<div class="clearfix"><a href="/consultas/'+valor['id']+'/edit"><button class="btn grey" type="button"><i class="glyphicon glyphicon-pencil"></i></button></a>';
                             str += '<form method="POST" action="/consultas/'+valor['id']+'" accept-charset="UTF-8" style="display:inline"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="EpzHCLDT5hrvvktJRhBSc8gnxE1eoH7GP0kl612s">';
@@ -276,47 +231,28 @@
                     dataType: 'json',
                     success: function(data){
                         var str = '';
-                        var classe = '';
                         data['schedules'].forEach(function(valor, chave){
 
-                            if(valor['service_id'] == 1) {
-                                classe='info';
-                            }
-                            if(valor['action_id'] == 2) {
-                                classe='success';
-                            }
-                            if(valor['service_id'] == 3) {
-                                classe='primary';
-                            }
-                            if(valor['service_id'] == 4) {
-                                classe='secondary'
-                            }
-                            if(valor['service_id'] == 5) {
-                                classe='danger';
-                            }
-                            if(valor['service_id'] == 6) {
-                                classe='warning';
-                            }
-                            if(valor['service_id'] == 7) {
-                                classe='lighy';
-                            }
-                            if(valor['service_id'] == 8) {
-                                classe='muted';
-                            }
-                            if(valor['service_id'] == 9) {
-                                classe='dark';
-                            }
+                          str += '<tr><td>'+valor['hour']+'</td><td>';
 
-                            str += '<tr class='+ classe +'><td>'+valor['hour']+'</td><td>'+valor['client_id']+
-                                '</td><td>';
+                            if( valor['client_id'] != null) {
+                                str += data['clients'][valor['client_id']];
+                            }
 
                             str += '</td><td>';
 
                             if( valor['service_id'] != null) {
-                                str += valor['service'];
+                                str += data['services'][valor['service_id']];
+                            }
+
+                            str += '</td><td>';
+
+                            if( valor['value'] != null) {
+                                str += valor['value'];
                             }
 
                             str += '</td><td>'
+
 
                             str += '<div class="clearfix"><a href="/agendas/'+valor['id']+'/edit"><button class="btn grey" type="button"><i class="glyphicon glyphicon-pencil"></i></button></a>';
                             str += '<form method="POST" action="/agendas/'+valor['id']+'" accept-charset="UTF-8" style="display:inline"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="EpzHCLDT5hrvvktJRhBSc8gnxE1eoH7GP0kl612s">';

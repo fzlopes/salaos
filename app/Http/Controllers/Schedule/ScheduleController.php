@@ -143,7 +143,11 @@ class ScheduleController extends Controller
             $schedules = Schedule::where('date', '=', Carbon::now()->format('Y-m-d'))->orderBy('hour', 'asc')->get();
         }
 
-        return ['schedules'=>$schedules];
+        $clients = Client::get()->pluck('name', 'id');
+
+        $services = Service::get()->pluck('name', 'id');
+
+        return ['schedules'=>$schedules, 'clients'=>$clients, 'services'=>$services];
     }
 
     /**
@@ -154,12 +158,12 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::find($id);
+        $schedule = Schedule::find($id);
 
-        $client->delete();
+        $schedule->delete();
 
-        \Session::flash('success', 'Cliente ' . $client->name . ' apagado com sucesso.');
+        \Session::flash('success', 'Agenda ' . $schedule->hour . ' apagada com sucesso.');
 
-        return response()->json(['message' => 'Cliente ' . $client->name . ' apagado com sucesso.']);
+        return response()->json(['message' => 'Agenda ' . $schedule->hour . ' apagada com sucesso.']);
     }
 }
