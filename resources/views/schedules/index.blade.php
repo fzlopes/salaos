@@ -65,7 +65,7 @@
                                     <a href="{{ route('agendas.create') }}">
                                         <button class="btn sbold btn-primary">Nova Agenda</button>
                                     </a>
-                                    <a href="javascript:;">
+                                    <a href="{{ route('agendas.busca') }}">
                                         <button class="btn sbold btn-primary">Busca Agenda</button>
                                     </a>
                                 </div>

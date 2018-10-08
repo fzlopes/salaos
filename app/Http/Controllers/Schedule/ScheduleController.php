@@ -8,6 +8,7 @@ use App\Schedule;
 use Illuminate\Support\Carbon;
 use App\Service;
 use App\Client;
+use PhpParser\Node\Stmt\Return_;
 
 class ScheduleController extends Controller
 {
@@ -83,9 +84,7 @@ class ScheduleController extends Controller
         ->get()
         ->pluck('name','id');
 
-        return view('schedules.edit')->with(compact('schedule',
-            'clients',
-            'services'));
+        return view('schedules.edit')->with(compact('schedule', 'clients', 'services'));
     }
 
     /**
@@ -138,6 +137,34 @@ class ScheduleController extends Controller
         $services = Service::get()->pluck('name', 'id');
 
         return ['schedules'=>$schedules, 'clients'=>$clients, 'services'=>$services];
+    }
+
+    public function busca()
+    {
+        return view('schedules.busca');
+    }
+
+    public function buscar(Request $request)
+    {
+        $date = $request->get('date');
+        $dataHoje = Carbon::parse($date)->format('d/m/Y');
+        $schedules = null;
+
+        $clients = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+
+        $services = Client::select('id','name')
+            ->orderBy('name', 'asc')
+            ->get()
+            ->pluck('name','id');
+
+        if(!empty($date)) {
+            $schedules = Schedule::where('date', '=', $date)
+                ->get();
+        }
+        return view('schedules.index')->with(compact('schedules','dataHoje', 'clients', 'services'));
     }
 
     /**
