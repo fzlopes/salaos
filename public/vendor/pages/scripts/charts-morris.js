@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
         data: totalRecebidoMes,
         xkey: 'y',
         ykeys: ['a'],
-        labels: ['Total']
+        labels: ['Total R$']
     });
 
 });
