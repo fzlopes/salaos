@@ -50,12 +50,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Schedule', 'as' => 'agenda
     Route::get('agendas/search/{date}', 'ScheduleController@search')->name('search');
     Route::get('agendas/busca', 'ScheduleController@busca')->name('busca');
     Route::post('agendas/buscar', 'ScheduleController@buscar')->name('buscar');
+    Route::get('totalRecebidoMes', 'ScheduleController@totalRecebidoMes')->name('totalRecebidoMes');
+    Route::get('agendamentosServico', 'ScheduleController@agendamentosServico')->name('agendamentosServico');
 });
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Schedule'], function() {
     Route::resource('agendas', 'ScheduleController');
 });
-
-
-
-

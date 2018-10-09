@@ -74,8 +74,8 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span data-counter="counterup" data-value="{{$valor}}"></span>0</div>
-                    <div class="desc"> Total R$ recebido  </div>
+                        <span data-counter="counterup" data-value="{{$servicos}}"></span></div>
+                    <div class="desc"> Total serviços  </div>
                 </div>
             </a>
         </div>
@@ -86,8 +86,8 @@
                 </div>
                 <div class="details">
                     <div class="number">
-                        <span data-counter="counterup" data-value="1539,00">0</span>R$ </div>
-                    <div class="desc"> Falta receber no mês </div>
+                        <span data-counter="counterup" data-value="{{$valor}}">0</span> R$ </div>
+                    <div class="desc"> Total recebido </div>
                 </div>
             </a>
         </div>
@@ -96,30 +96,17 @@
     <!-- END DASHBOARD STATS 1-->
     <div class="row">
         <div class="col-lg-6 col-xs-12 col-sm-12">
-            <!-- BEGIN PORTLET-->
-            <div class="portlet light bordered">
+            <div class="portlet light bordered" style="padding-bottom: 101px;">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="icon-bar-chart font-dark hide"></i>
-                        <span class="caption-subject font-dark bold uppercase">Volume de recebimento</span>
-                        <span class="caption-helper">análise diária</span>
+                        <i class="icon-share font-red-sunglo hide"></i>
+                        <span class="caption-subject font-dark bold uppercase">Agendamentos</span>
+                        <span class="caption-helper">por serviços</span>
                     </div>
-                    {{--<div class="actions">--}}
-                        {{--<div class="btn-group btn-group-devided" data-toggle="buttons">--}}
-                            {{--<label class="btn red btn-outline btn-circle btn-sm active">--}}
-                                {{--<input type="radio" name="options" class="toggle" id="option1">New</label>--}}
-                            {{--<label class="btn red btn-outline btn-circle btn-sm">--}}
-                                {{--<input type="radio" name="options" class="toggle" id="option2">Returning</label>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                 </div>
                 <div class="portlet-body">
-                    <div id="site_statistics_loading">
-                        <img src="{{ asset('vendor/global/img/loading.gif') }}" alt="loading" />
-                    </div>
-                    <div id="site_statistics_content" class="display-none">
-                        <div id="site_statistics" class="chart"> </div>
-                    </div>
+                    <h4>Total de agendamentos adicionados no sistema, separados por serviços.</h4>
+                    <div id="pie_chart_6" class="chart"></div>
                 </div>
             </div>
             <!-- END PORTLET-->
@@ -130,51 +117,68 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-share font-red-sunglo hide"></i>
-                        <span class="caption-subject font-dark bold uppercase">Faturamento</span>
+                        <span class="caption-subject font-dark bold uppercase">Total Recebido em R$</span>
                         <span class="caption-helper">mês a mês</span>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div id="site_activities_loading">
-                        <img src="{{ asset('vendor/global/img/loading.gif') }}" alt="loading" /> </div>
-                    <div id="site_activities_content" class="display-none">
-                        <div id="site_activities" style="height: 228px;"> </div>
-                    </div>
-                    <div style="margin: 20px 0 10px 30px">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                <span class="label label-sm label-success"> Revenue: </span>
-                                <h3>$13,234</h3>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                <span class="label label-sm label-info"> Tax: </span>
-                                <h3>$134,900</h3>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                <span class="label label-sm label-danger"> Shipment: </span>
-                                <h3>$1,134</h3>
-                            </div>
-                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                <span class="label label-sm label-warning"> Orders: </span>
-                                <h3>235090</h3>
-                            </div>
-                        </div>
-                    </div>
+                    <h4>Total recebido em R$ adicionado no sistema, separados por mês.</h4>
+                    <div id="morris_chart_1"></div>
                 </div>
             </div>
             <!-- END PORTLET-->
+        </div>
+    </div>
+    
+    <div class="hide">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-body">
+                        <div id="chart_1_1" class="chart"> </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 @endsection
 
 @section('scripts')
+
+@section('scripts')
+
+    <script>
+        
+        var totalRecebidoMes;
+
+        $(function(){
+            $.ajax({
+                type:"GET",
+                url:'/totalRecebidoMes',
+                dataType: 'json',
+                async: false,
+                success: function(response){
+                    totalRecebidoMes = response;
+                },
+                error : function(response){
+                    console.log(response);
+                }
+            });
+        });
+
+    </script>
     <script src="{{ asset('vendor/global/plugins/counterup/jquery.waypoints.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/counterup/jquery.counterup.min.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
+    
 
     <script src="{{ asset('vendor/pages/scripts/dashboard.js') }}" type="text/javascript"></script>
+
+    
+    <script src="{{ asset('vendor/global/plugins/morris/raphael-min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/pages/scripts/charts-morris.js') }}" type="text/javascript"></script>
 @endsection

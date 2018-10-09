@@ -197,12 +197,13 @@
                             str += '</td><td>'
 
 
-                            str += '<div class="clearfix"><a href="/consultas/'+valor['id']+'/edit"><button class="btn grey" type="button"><i class="glyphicon glyphicon-pencil"></i></button></a>';
-                            str += '<form method="POST" action="/consultas/'+valor['id']+'" accept-charset="UTF-8" style="display:inline"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="EpzHCLDT5hrvvktJRhBSc8gnxE1eoH7GP0kl612s">';
+                            str += '<div class="clearfix"><a href="/agendas/'+valor['id']+'/edit"><button class="btn grey" type="button"><i class="glyphicon glyphicon-pencil"></i></button></a>';
+                            str += '<form method="POST" action="/agendas/'+valor['id']+'" accept-charset="UTF-8" style="display:inline"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="EpzHCLDT5hrvvktJRhBSc8gnxE1eoH7GP0kl612s">';
                             str += '<button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></form></div>';
                             str += '</td></tr>';
 
                         });
+                        <button class="btn red mt-sweetalert" type="button" data-button="del" data-id="5" data-title="Confirma exclusão da consulta do cliente Fábio?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
                         $('.mybody').html(str);
 
                     },

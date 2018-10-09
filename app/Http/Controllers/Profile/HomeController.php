@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Client;
+use App\Service;
 use App\Schedule;
 
 class HomeController extends Controller
@@ -32,10 +33,12 @@ class HomeController extends Controller
             ->count();
 
         $clientes = Client::count('id');
+
+        $servicos = Service::count('id');
         
         $valor = Schedule::sum('value');
 
-        return view('profile.dashboard')->with(compact('usuarios','clientes', 'valor'));
+        return view('profile.dashboard')->with(compact('usuarios','clientes', 'servicos', 'valor'));
     }
 
     /**
@@ -45,7 +48,6 @@ class HomeController extends Controller
      */
     public function profile()
     {
-
         $user = User::find(Auth::user()->id);
         return view('profile.profile')->with(compact('user'));
     }

@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Schedule;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use App\Service;
 use App\Client;
-use PhpParser\Node\Stmt\Return_;
 
 class ScheduleController extends Controller
 {
+
+    private $months = [
+        1 => 'Janeiro', 2 => 'Fevereiro', 3 => 'Março' , 4 => 'Abril', 5 => 'Maio', 6 => 'Junho',
+        7 => 'Julho', 8 => 'Agosto', 9 => 'Setembro', 10 => 'Outubro', 11 => 'Novembro', 12 => 'Dezembro'
+    ];
+    
      /**
      * Display a listing of the resource.
      *
@@ -165,6 +170,55 @@ class ScheduleController extends Controller
                 ->get();
         }
         return view('schedules.index')->with(compact('schedules','dataHoje', 'clients', 'services'));
+    }
+
+    public function agendamentosServico()
+    {
+        $documentosDepartamentoFiscal   = Document::where('department_id', '=', 1)
+            ->get()
+            ->count();
+
+        $documentosDepartamentoPessoal  = Document::where('department_id', '=', 2)
+            ->get()
+            ->count();
+
+        $documentosDepartamentoContabil = Document::where('department_id', '=', 3)
+            ->get()
+            ->count();
+
+        $documentos = ["fiscal"   => $documentosDepartamentoFiscal,
+                       "pessoal"  => $documentosDepartamentoPessoal,
+                       "contabil" => $documentosDepartamentoContabil
+        ];
+
+        return response()->json($documentos);
+
+    }
+
+    public function totalRecebidoMes()
+    {
+        $recebimentos = [];
+
+        if (Carbon::now()->month < 7) {
+            for ($i = 1; $i<= Carbon::now()->month; $i++) {
+                $totalRecebidoMes = Schedule::whereMonth('created_at', $i)
+                    ->whereYear('created_at', Carbon::now()->year)
+                    ->sum('value');
+                $downloads[] = ['y' => $this->months[$i], 'a' => $totalRecebidoMes];
+            }
+            for ($i = count($recebimentos) + 1; $i<= 6; $i++) {
+                $recebimentos[] = ['y' => $this->months[$i], 'a' => 0];
+            }
+        } else {
+            for ($i = Carbon::now()->month - 5; $i<= Carbon::now()->month; $i++) {
+                $totalRecebidoMes = Schedule::whereMonth('created_at', $i)
+                    ->whereYear('created_at', Carbon::now()->year)
+                    ->sum('value');
+                $recebimentos[] = ['y' => $this->months[$i], 'a' => $totalRecebidoMes];
+            }
+        }
+
+        return response()->json($recebimentos);
     }
 
     /**
