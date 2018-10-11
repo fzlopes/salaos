@@ -167,6 +167,23 @@
             });
         });
 
+        var totalAgendamentosServico = [];
+
+        $(function(){
+            $.ajax({
+                type:"GET",
+                url:'agendamentosServico',
+                dataType: 'json',
+                async: false,
+                success: function(response){
+                    totalAgendamentosServico = [response.corteFeminino, response.corteFemininoTintura, response.tinturaComTinta, response.tinturaSemTinta, response.corteMasculinoMaquina, response.corteMasculinoTesoura, response.pe, response.mao, response.maoPe, response.luzes, response.progressiva, response.escova, response.megaHair, response.chapinha];
+                },
+                error : function(response){
+                    console.log(response);
+                }
+            });
+        });
+
     </script>
     <script src="{{ asset('vendor/global/plugins/counterup/jquery.waypoints.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/counterup/jquery.counterup.min.js') }}" type="text/javascript"></script>
@@ -174,11 +191,14 @@
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
-    
+    <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.pie.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.stack.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.crosshair.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.axislabels.min.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset('vendor/pages/scripts/dashboard.js') }}" type="text/javascript"></script>
 
-    
+    <script src="{{ asset('vendor/pages/scripts/charts-flotcharts.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/morris/raphael-min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/pages/scripts/charts-morris.js') }}" type="text/javascript"></script>
 @endsection

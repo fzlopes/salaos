@@ -50,6 +50,26 @@ class ServicesTableSeeder extends Seeder
             'name' => 'Mão e Pé'
         ]);
 
+        Service::create([
+            'name' => 'Luzes'
+        ]);
+
+        Service::create([
+            'name' => 'Progressiva'
+        ]);
+
+        Service::create([
+            'name' => 'Escova'
+        ]);
+
+        Service::create([
+            'name' => 'MegaHair'
+        ]);
+
+        Service::create([
+            'name' => 'Chapinha'
+        ]);
+
         $this->command->info('The basic services was created.');
     }
 }

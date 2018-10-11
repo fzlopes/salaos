@@ -174,24 +174,81 @@ class ScheduleController extends Controller
 
     public function agendamentosServico()
     {
-        $documentosDepartamentoFiscal   = Document::where('department_id', '=', 1)
+        $corteFeminino = Schedule::where('service_id', '=', 1)
             ->get()
             ->count();
 
-        $documentosDepartamentoPessoal  = Document::where('department_id', '=', 2)
+        $corteFemininoTintura = Schedule::where('service_id', '=', 2)
             ->get()
             ->count();
 
-        $documentosDepartamentoContabil = Document::where('department_id', '=', 3)
+        $tinturaComTinta = Schedule::where('service_id', '=', 3)
+            ->get()
+            ->count();
+    
+        $tinturaSemTinta = Schedule::where('service_id', '=', 4)
             ->get()
             ->count();
 
-        $documentos = ["fiscal"   => $documentosDepartamentoFiscal,
-                       "pessoal"  => $documentosDepartamentoPessoal,
-                       "contabil" => $documentosDepartamentoContabil
+        $corteMasculinoMaquina = Schedule::where('service_id', '=', 5)
+            ->get()
+            ->count();
+
+        $corteMasculinoTesoura = Schedule::where('service_id', '=', 6)
+            ->get()
+            ->count();
+
+        $pe = Schedule::where('service_id', '=', 7)
+            ->get()
+            ->count();
+       
+        $mao = Schedule::where('service_id', '=', 8)
+            ->get()
+            ->count();
+
+        $maoPe = Schedule::where('service_id', '=', 9)
+            ->get()
+            ->count();
+
+        $luzes = Schedule::where('service_id', '=', 10)
+            ->get()
+            ->count();
+
+        $progressiva = Schedule::where('service_id', '=', 11)
+            ->get()
+            ->count();
+
+        $escova = Schedule::where('service_id', '=', 12)
+            ->get()
+            ->count();
+
+        $megaHair = Schedule::where('service_id', '=', 13)
+            ->get()
+            ->count();
+
+        $chapinha = Schedule::where('service_id', '=', 14)
+            ->get()
+            ->count();
+
+
+
+        $agendamentos = ["corteFeminino"         => $corteFeminino,
+                         "corteFemininoTintura"  => $corteFemininoTintura,
+                         "tinturaComTinta"       => $tinturaComTinta,
+                         "tinturaSemTinta"       => $tinturaSemTinta,   
+                         "corteMasculinoMaquina" => $corteMasculinoMaquina,
+                         "corteMasculinoTesoura" => $corteMasculinoTesoura,
+                         "pe"                    => $pe,
+                         "mao"                   => $mao,
+                         "maoPe"                 => $maoPe,
+                         "luzes"                 => $luzes,
+                         "progressiva"           => $progressiva,
+                         "escova"                => $escova,
+                         "megaHair"              => $megaHair,
+                         "chapinha"              => $chapinha
         ];
 
-        return response()->json($documentos);
+        return response()->json($agendamentos);
 
     }
 

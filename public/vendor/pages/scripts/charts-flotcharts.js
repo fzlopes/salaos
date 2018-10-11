@@ -619,12 +619,12 @@ var ChartsFlotcharts = function() {
         initPieCharts: function() {
 
             var data = [];
-            var values = totalDocumentoPorDepartamento;
-            var departamentos = ['Dep. Fiscal', 'Dep. Pessoal','Dep. Contábil'];
+            var values = totalAgendamentosServico;
+            var servicos = ['Corte Feminino', 'Corte Feminino e Tintura', 'Tintura com a tinta', 'Tintura sem a tinta', 'Corte Masculino Máquina', 'Corte Masculino Tesoura', 'Pé', 'Mão', 'Mão e Pé', 'Luzes', 'Progressiva', 'Escova', 'MegaHair', 'Chapinha'];
 
-            for (var i = 0; i < departamentos.length; i++) {
+            for (var i = 0; i < servicos.length; i++) {
                 data[i] = {
-                    label: departamentos[i],
+                    label: servicos[i],
                     data: values[i]
                 };
 
