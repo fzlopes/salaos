@@ -15,27 +15,27 @@ class ServicesTableSeeder extends Seeder
         Service::truncate();
 
         Service::create([
-            'name' => 'Corte Feminino'
+            'name' => 'Feminino'
         ]);
 
         Service::create([
-            'name' => 'Corte Feminino e Tintura'
+            'name' => 'Feminino e Tintura'
         ]);
 
         Service::create([
-            'name' => 'Tintura com a tinta'
+            'name' => 'Tintura(com tinta)'
         ]);
 
         Service::create([
-            'name' => 'Tintura sem a tinta'
+            'name' => 'Tintura(sem tinta)'
         ]);
 
         Service::create([
-            'name' => 'Corte Masculino Máquina'
+            'name' => 'Masculino Máquina'
         ]);
 
         Service::create([
-            'name' => 'Corte Masculino Tesoura'
+            'name' => 'Masculino Tesoura'
         ]);
 
         Service::create([
@@ -63,7 +63,7 @@ class ServicesTableSeeder extends Seeder
         ]);
 
         Service::create([
-            'name' => 'MegaHair'
+            'name' => 'Mega Hair'
         ]);
 
         Service::create([

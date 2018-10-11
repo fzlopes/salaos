@@ -176,7 +176,7 @@
                 dataType: 'json',
                 async: false,
                 success: function(response){
-                    totalAgendamentosServico = [response.corteFeminino, response.corteFemininoTintura, response.tinturaComTinta, response.tinturaSemTinta, response.corteMasculinoMaquina, response.corteMasculinoTesoura, response.pe, response.mao, response.maoPe, response.luzes, response.progressiva, response.escova, response.megaHair, response.chapinha];
+                    totalAgendamentosServico = [response.feminino, response.FemininoTintura, response.tinturaComTinta, response.tinturaSemTinta, response.masculinoMaquina, response.masculinoTesoura, response.pe, response.mao, response.maoPe, response.luzes, response.progressiva, response.escova, response.megaHair, response.chapinha];
                 },
                 error : function(response){
                     console.log(response);
@@ -194,8 +194,7 @@
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.pie.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.stack.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.crosshair.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('vendor/global/plugins/flot/jquery.flot.axislabels.min.js') }}" type="text/javascript"></script>
-
+    
     <script src="{{ asset('vendor/pages/scripts/dashboard.js') }}" type="text/javascript"></script>
 
     <script src="{{ asset('vendor/pages/scripts/charts-flotcharts.js') }}" type="text/javascript"></script>

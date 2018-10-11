@@ -620,7 +620,7 @@ var ChartsFlotcharts = function() {
 
             var data = [];
             var values = totalAgendamentosServico;
-            var servicos = ['Corte Feminino', 'Corte Feminino e Tintura', 'Tintura com a tinta', 'Tintura sem a tinta', 'Corte Masculino Máquina', 'Corte Masculino Tesoura', 'Pé', 'Mão', 'Mão e Pé', 'Luzes', 'Progressiva', 'Escova', 'MegaHair', 'Chapinha'];
+            var servicos = ['Feminino', 'Feminino e Tintura', 'Tintura(com tinta)', 'Tintura(sem tinta)', 'Masculino Máquina', 'Masculino Tesoura', 'Pé', 'Mão', 'Mão e Pé', 'Luzes', 'Progressiva', 'Escova', 'Mega Hair', 'Chapinha'];
 
             for (var i = 0; i < servicos.length; i++) {
                 data[i] = {

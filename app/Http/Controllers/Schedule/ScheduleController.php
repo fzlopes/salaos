@@ -174,11 +174,11 @@ class ScheduleController extends Controller
 
     public function agendamentosServico()
     {
-        $corteFeminino = Schedule::where('service_id', '=', 1)
+        $feminino =Schedule::where('service_id', '=', 1)
             ->get()
             ->count();
 
-        $corteFemininoTintura = Schedule::where('service_id', '=', 2)
+        $femininoTintura = Schedule::where('service_id', '=', 2)
             ->get()
             ->count();
 
@@ -190,11 +190,11 @@ class ScheduleController extends Controller
             ->get()
             ->count();
 
-        $corteMasculinoMaquina = Schedule::where('service_id', '=', 5)
+        $masculinoMaquina = Schedule::where('service_id', '=', 5)
             ->get()
             ->count();
 
-        $corteMasculinoTesoura = Schedule::where('service_id', '=', 6)
+        $masculinoTesoura = Schedule::where('service_id', '=', 6)
             ->get()
             ->count();
 
@@ -232,12 +232,12 @@ class ScheduleController extends Controller
 
 
 
-        $agendamentos = ["corteFeminino"         => $corteFeminino,
-                         "corteFemininoTintura"  => $corteFemininoTintura,
+        $agendamentos = ["feminino"              => $feminino,
+                         "femininoTintura"       => $femininoTintura,
                          "tinturaComTinta"       => $tinturaComTinta,
                          "tinturaSemTinta"       => $tinturaSemTinta,   
-                         "corteMasculinoMaquina" => $corteMasculinoMaquina,
-                         "corteMasculinoTesoura" => $corteMasculinoTesoura,
+                         "masculinoMaquina"      => $masculinoMaquina,
+                         "masculinoTesoura"      => $masculinoTesoura,
                          "pe"                    => $pe,
                          "mao"                   => $mao,
                          "maoPe"                 => $maoPe,
