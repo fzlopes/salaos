@@ -38,13 +38,11 @@
 
                                 <div class=" form-group {{ $errors->has('client_id') ? 'has-error' :'' }}">
                                     {!! Form::label('client_id', 'Cliente *', ['class' => 'control-label']) !!}
-                                    <br>
                                     {!! Form::select('client_id', $clients, !empty($schedule->client)?$schedule->client->id:null,  ['class' => 'form-control cliente','required' => 'required', 'data-placeholder' => 'Selecione o cliente...', 'tabindex' => 3]) !!}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('service_id') ? 'has-error' :'' }}">
                                     {!! Form::label('service_id', 'Serviço *', ['class' => 'control-label']) !!}
-                                    <br>
                                     {!! Form::select('service_id', $services, !empty($schedule->service)?$schedule->service->id:null,  ['class' => 'form-control servico', 'required' => 'required', 'data-placeholder' => 'Selecione o serviço...', 'tabindex' => 4]) !!}
                                 </div>
 
