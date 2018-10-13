@@ -203,7 +203,7 @@
                             str += '</td></tr>';
 
                         });
-                        <button class="btn red mt-sweetalert" type="button" data-button="del" data-id="5" data-title="Confirma exclusão da consulta do cliente Fábio?" data-type="error" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-default" data-cancel-button-text="Não" data-confirm-button-text="Sim, confirmo!" data-confirm-button-class="btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                        
                         $('.mybody').html(str);
 
                     },

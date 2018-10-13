@@ -3,6 +3,7 @@
 @section('css')
     <link href="{{ asset('vendor/global/plugins/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/global/plugins/chosen/chosen.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('pagebar')
@@ -61,9 +62,22 @@
     <script src="{{ asset('vendor/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/jquery-validation/js/localization/messages_pt_BR.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/plugins/jquery.maskedinput.min.js') }}" type="text/javascript"></script>
-
+    
+    <script src="{{ asset('vendor/global/plugins/chosen/chosen.jquery.js') }}" type="text/javascript"></script>
+    
     <script type="text/javascript">
         jQuery(document).ready(function() {
+            $(".cliente").chosen({
+                //placeholder_text_single: "Selecione o cliente...",
+                no_results_text: "Nenhum resultado para a pesquisa!"
+                
+            });
+
+             $(".servico").chosen({
+                //placeholder_text_single: "Selecione o serviço...",
+                no_results_text: "Nenhum resultado para a pesquisa!"
+                
+            });
            
         });
     </script>
