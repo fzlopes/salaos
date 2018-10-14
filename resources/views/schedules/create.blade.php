@@ -68,15 +68,27 @@
     <script type="text/javascript">
         jQuery(document).ready(function() {
             $(".cliente").chosen({
-                //placeholder_text_single: "Selecione o cliente...",
+                placeholder_text_single: "Selecione o cliente...",
                 no_results_text: "Nenhum resultado para a pesquisa!"
                 
             });
 
              $(".servico").chosen({
-                //placeholder_text_single: "Selecione o serviço...",
+                placeholder_text_single: "Selecione o serviço...",
                 no_results_text: "Nenhum resultado para a pesquisa!"
                 
+            });
+
+            $('#value').inputmask('decimal', {
+                'alias': 'numeric',
+                //'groupSeparator': ',',
+                'autoGroup': true,
+                'digits': 2,
+                'radixPoint': ".",
+                'digitsOptional': false,
+                'allowMinus': false,
+                //'prefix': 'R$ ',
+                'placeholder': ''
             });
            
         });
