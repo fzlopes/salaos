@@ -51,10 +51,14 @@
                                     {!! Form::text('observation', null, ['class' => 'form-control', 'placeholder' => 'Observação', 'tabindex' => 5]) !!}
                                 </div>
 
-                                <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
-                                    {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
-                                    <br>
-                                    {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor pago', 'tabindex' => 6]) !!}
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class=" form-group {{ $errors->has('value') ? 'has-error' :'' }}">
+                                            {!! Form::label('value', 'Valor', ['class' => 'control-label']) !!}
+                                            <br>
+                                            {!! Form::text('value', null, ['class' => 'form-control', 'placeholder' => 'Valor pago', 'tabindex' => 6]) !!}
+                                        </div>
+                                    </div>
                                 </div>
               
                             </div>
