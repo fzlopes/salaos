@@ -44,6 +44,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Client'], function() {
 });
 
 /**
+ * Service routes
+ */
+Route::group(['middleware' => 'auth', 'namespace' => 'Service'], function() {
+    Route::resource('servicos', 'ServiceController');
+});
+
+/**
  * Schedule routes
  */
 Route::group(['middleware' => 'auth', 'namespace' => 'Schedule', 'as' => 'agendas.'], function() {

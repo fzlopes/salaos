@@ -48,6 +48,13 @@
                 </a>
             </li>
 
+            <li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'servicos' || Request::is('servicos/create') ? ' start active open' : '' }}">
+                <a href="{{ route('servicos.index') }}" class="nav-link ">
+                    <i class="icon-rocket"></i>
+                    <span class="title">Serviços</span>
+                </a>
+            </li>
+
             <li class="nav-item  {{ strstr(Route::getCurrentRoute()->getName(), '.', true) == 'agendas' || Request::is('agendas/create') ? ' start active open' : '' }}">
                 <a href="{{ route('agendas.index') }}" class="nav-link ">
                     <i class="icon-rocket"></i>
