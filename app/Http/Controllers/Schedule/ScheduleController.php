@@ -8,6 +8,7 @@ use App\Schedule;
 use Carbon\Carbon;
 use App\Service;
 use App\Client;
+use App\Http\Requests\Schedule\ScheduleFormRequest;
 
 class ScheduleController extends Controller
 {
@@ -59,7 +60,7 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleFormRequest $request)
     {
         Schedule::create($request->all());
 
@@ -99,7 +100,7 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ScheduleFormRequest $request, $id)
     {
         $schedule = Schedule::find($id);
         $schedule->fill($request->all());

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service;
+use App\Http\Requests\Service\ServiceFormRequest;
 
 class ServiceController extends Controller
 {
@@ -35,7 +36,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceFormRequest $request)
     {
         ServiceController::create($request->all());
 
@@ -75,7 +76,7 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceFormRequest $request, $id)
     {
         $service = Service::find($id);
         $service->fill($request->all());
